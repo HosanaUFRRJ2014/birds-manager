@@ -1,0 +1,82 @@
+<form>
+    <div class="mb-3">
+      <label for="birdName" class="form-label">Nome</label>
+      <input type="email" class="form-control" id="birdName" aria-describedby="nameHelp">
+    </div>
+
+    <div class="input-group mb-3">
+        <label class="input-group-text" for="birdPhoto"><fa-icon [icon]="['fas', 'camera' ]"></fa-icon></label>
+        <input type="file" class="form-control" id="birdPhoto">
+    </div>
+
+    <div class="input-group">
+    <div class="mb-3">
+        <label class="form-label" for="birdType">Tipo de ave</label>
+        <select class="form-select" id="birdType">
+          <option selected>Escolha...</option>
+          <option value="calopsita">Calopsita</option>
+          <option value="canario">Canário</option>
+          <option value="galinha">Galinha</option>
+          <option value="papagaio">Papagaio</option>
+          <option value="periquito">Periquito</option>
+        </select>
+    </div>
+
+    <div id="birdSexDiv">
+        <label class="form-label" for="birdSex">Sexo</label>
+        <div class="birdSexRadio">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="birdSex" id="birdSexMale">
+                <label class="form-check-label" for="birdSexMale">
+                    <fa-icon [icon]="['fas', 'mars' ]"></fa-icon> Macho
+                </label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="birdSex" id="birdSexFemale" checked>
+                <label class="form-check-label" for="birdSexFemale">
+                    <fa-icon [icon]="['fas', 'venus' ]"></fa-icon> Fêmea
+                </label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="birdSex" id="birdSexUndefined">
+                <label class="form-check-label" for="birdSexUndefined">
+                    <fa-icon [icon]="['fas', 'question' ]"></fa-icon>
+                </label>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div class="mb-3" id="datesDiv">
+        <div class="date-div">
+            <label class="form-label" for="birthday">
+                <fa-icon [icon]="['fas', 'cake-candles' ]"></fa-icon>
+                Nascimento
+            </label>
+            <input class="date-picker" type="date" id="birthday" name="birthday">
+        </div>
+        <div class="date-div">
+            <label class="form-label" for="aquisition">
+                <fa-icon [icon]="['fas', 'money-check-dollar' ]"></fa-icon>
+                Aquisição
+            </label>
+            <input class="date-picker" type="date" id="aquisition" name="aquisition">
+        </div>
+        <div class="date-div">
+            <label class="form-label" for="first-egg">
+                <fa-icon [icon]="['fas', 'egg' ]"></fa-icon>
+                Primeira postura
+            </label>
+            <input class="date-picker" type="date" id="first-egg" name="first-egg">
+        </div>
+    </div>
+    
+    <div class="mb-3">
+        <label for="birdDescription" class="form-label">Descrição</label>
+        <textarea class="form-control" id="birdDescription" aria-describedby="descriptionHelp"></textarea>
+        <div id="descriptionHelp" class="form-text">Temperamento, curiosidades, etc</div>
+      </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-warning">Cadastrar</button>
+    </div>
+</form>
