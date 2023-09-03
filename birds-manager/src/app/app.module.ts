@@ -8,12 +8,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CreateBirdComponent } from './create-bird/create-bird.component';
 import { BirdFormComponent } from './bird-form/bird-form.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CreateBirdComponent,
-    BirdFormComponent
+    BirdFormComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
