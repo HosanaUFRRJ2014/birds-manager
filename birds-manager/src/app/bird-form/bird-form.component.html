@@ -5,7 +5,9 @@
     </div>
 
     <div class="input-group mb-3">
-        <label class="input-group-text" for="birdPhoto"><fa-icon [icon]="['fas', 'camera' ]"></fa-icon></label>
+        <label class="input-group-text" for="birdPhoto">
+            <fa-icon [icon]="['fas', 'camera' ]"></fa-icon>
+        </label>
         <input type="file" class="form-control" id="birdPhoto">
     </div>
 
@@ -24,7 +26,7 @@
 
     <div id="birdSexDiv">
         <label class="form-label" for="birdSex">Sexo</label>
-        <div class="birdSexRadio">
+        <div class="birdSexRadio" (change)="onChangeSex($event)">
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="birdSex" id="birdSexMale">
                 <label class="form-check-label" for="birdSexMale">
@@ -32,13 +34,13 @@
                 </label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="birdSex" id="birdSexFemale" checked>
+                <input class="form-check-input" type="radio" name="birdSex" id="birdSexFemale">
                 <label class="form-check-label" for="birdSexFemale">
                     <fa-icon [icon]="['fas', 'venus' ]"></fa-icon> Fêmea
                 </label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="birdSex" id="birdSexUndefined">
+                <input class="form-check-input" type="radio" name="birdSex" id="birdSexUndefined" checked>
                 <label class="form-check-label" for="birdSexUndefined">
                     <fa-icon [icon]="['fas', 'question' ]"></fa-icon>
                 </label>
@@ -62,7 +64,7 @@
             </label>
             <input class="date-picker" type="date" id="aquisition" name="aquisition">
         </div>
-        <div class="date-div">
+        <div class="date-div" [hidden]="!isFemale">
             <label class="form-label" for="first-egg">
                 <fa-icon [icon]="['fas', 'egg' ]"></fa-icon>
                 Primeira postura
@@ -77,6 +79,6 @@
         <div id="descriptionHelp" class="form-text">Temperamento, curiosidades, etc</div>
       </div>
     <div class="modal-footer">
-        <button type="submit" class="btn btn-warning">Cadastrar</button>
+        <button type="submit" class="btn btn-warning">Salvar</button>
     </div>
 </form>
