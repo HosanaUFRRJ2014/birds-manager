@@ -1,12 +1,12 @@
 <div>
     <button type="button" class="btn btn-warning" 
-        (click)="openModal(template)">
+        (click)="openModal('create', template)">
         <span><i class="fa fa-plus"></i></span> Cadastrar ave
     </button>
 
     <ng-template #template>
         <div class="modal-header">
-            <h4 class="modal-title pull-left">Cadastrar Ave</h4>
+            <h4 class="modal-title pull-left">{{modalTitle}}</h4>
             <button type="button" class="close pull-right" 
                     aria-label="Close" (click)="modalRef.hide()">
         <span aria-hidden="true">&times;</span>
