@@ -9,7 +9,7 @@ import { BirdType } from '../classes/BirdType';
 })
 export class BirdFormComponent {
     isFemale: boolean = false;
-    @Input() bird: Bird | undefined // = new Bird('', BirdType.hen, new Date(), new Date())
+    @Input() bird: Bird | undefined
 
     ngOnInit() {
       this.loadBirdData()
