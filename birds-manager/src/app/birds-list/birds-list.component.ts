@@ -1,8 +1,10 @@
-import { Component, TemplateRef } from '@angular/core';
+import { Component, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { Bird } from '../classes/Bird';
-import { BirdSex } from '../classes/BirdSex';
-import { BirdType } from '../classes/BirdType';
+import { Bird } from '../models/Bird';
+import { BirdSex } from '../models/BirdSex';
+import { BirdType } from '../models/BirdType';
+import { LocalStorageService } from 'angular-web-storage';
+import { BIRDS_LIST_KEY, CURRENT_BIRD_INDEX_KEY } from '../utils/Constants';
 
 @Component({
   selector: 'birds-list',
@@ -11,26 +13,32 @@ import { BirdType } from '../classes/BirdType';
 })
 export class BirdsListComponent {
   public modalRef: BsModalRef
-  birdsList = [
-    new Bird(
-      "Come-Come",
-      BirdType.cockatiel,
-      new Date("2023-02-10"),
-      new Date("2023-07-10")
-    )
-  ]
+  @Input() birds: Map<number, Bird> | undefined
+  @Output() saveBird = new EventEmitter()
+  
   modalTitle: string
-  // @Output() selectedBird: string = ''
 
   constructor(private modalService: BsModalService) {
     this.modalRef = new BsModalRef();
     this.modalTitle = "Atualizar Ave"
   }
 
-  openUpdateModal(selectedBirdId: number, template: TemplateRef<any>) {
+  ngOnInit() {
+    // this.loadBirdsFromStorage()
+  }
+  
+  /*ngOnChange() {
+    this.loadBirdsFromStorage()
+  }*/
+
+  openUpdateModal(template: TemplateRef<any>) {
     console.log("Open modal to update bird")
-    let selectedBird = this.birdsList[selectedBirdId]
-    // this.selectedBird = selectedBird
+    // let selectedBird = this.birds.get(onSelectBird)
     this.modalRef = this.modalService.show(template);
   }
+
+  public onSaveBird(bird: Bird) {
+    this.saveBird.emit(bird)
+  }
+
 }

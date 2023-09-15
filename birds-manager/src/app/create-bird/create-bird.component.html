@@ -13,7 +13,10 @@
         </button>
         </div>
         <div class="modal-body">
-            <bird-form />
+            <bird-form 
+                (saveBird)="onSaveBird($event)"
+                (willClose)="modalRef.hide()"
+            />
         </div>
     </ng-template>
 </div>

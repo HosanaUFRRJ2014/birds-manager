@@ -2,6 +2,7 @@ import { BirdSex } from "./BirdSex"
 import { BirdType } from "./BirdType"
 
 export class Bird {
+    id?: number | undefined
     name: string
     photo: string | undefined
     type: BirdType
@@ -16,6 +17,7 @@ export class Bird {
         type: BirdType, 
         birthday: Date, 
         aquisitionDate: Date,
+        id: number | undefined = undefined,
         photo: string | undefined = undefined,
         sex: BirdSex | undefined = undefined,
         firstEgg: Date | undefined = undefined,
@@ -26,6 +28,7 @@ export class Bird {
         this.birthday = birthday
         this.aquisitionDate = aquisitionDate
 
+        this.id = id
         this.photo = photo
         this.sex = sex
         this.firstEgg = firstEgg

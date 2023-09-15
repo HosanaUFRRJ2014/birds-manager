@@ -1,5 +1,11 @@
 <div>
   <app-header />
-  <create-bird actionType='create' />
-  <birds-list />
+  <create-bird 
+    actionType='create' 
+    (saveBird)="onSaveBird($event)"
+  />
+  <birds-list
+    (saveBird)="onSaveBird($event)"
+    [birds]="birds"
+   />
 </div>

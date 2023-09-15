@@ -1,6 +1,5 @@
 <button 
-    [class]="classesList" 
-    
+    class="list-group-item list-group-item-action"
     (click)="onClick($event, itemId)">
-    {{bird?.name}}
+    {{bird!.name}}
 </button>

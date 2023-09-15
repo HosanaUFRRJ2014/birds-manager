@@ -1,84 +1,144 @@
-<form>
+<form #birdForm="ngForm" (ngSubmit)="onSubmit()">
     <div class="mb-3">
       <label for="birdName" class="form-label">Nome</label>
-      <input type="text" class="form-control" id="birdName" aria-describedby="nameHelp">
+        <input 
+            type="text" 
+            pattern="^[^0-9]+$"
+            class="form-control" 
+            id="birdName" 
+            name="birdName"
+            required 
+            [(ngModel)]="model.name"
+            #name="ngModel"
+            aria-describedby="nameHelp"
+        >
+        <div class="alert alert-danger" [hidden]="name.untouched || name.valid || name.pristine">
+            {{ mandatoryFieldText }}. Campo não pode conter números.
+        </div>
     </div>
 
     <div class="input-group mb-3">
         <label class="input-group-text" for="birdPhoto">
             <fa-icon [icon]="['fas', 'camera']"></fa-icon>
         </label>
-        <input type="file" class="form-control" id="birdPhoto">
+        <input 
+            type="file" 
+            class="form-control" 
+            id="birdPhoto"
+            name="birdPhoto"
+            [(ngModel)]="model.photo"
+            #name="ngModel"
+        >
     </div>
 
     <div class="input-group">
-    <div class="mb-3">
-        <label class="form-label" for="birdType">Tipo de ave</label>
-        <select class="form-select" id="birdType">
-          <option selected>Escolha...</option>
-          <option value="calopsita">Calopsita</option>
-          <option value="canario">Canário</option>
-          <option value="galinha">Galinha</option>
-          <option value="papagaio">Papagaio</option>
-          <option value="periquito">Periquito</option>
-        </select>
-    </div>
+        <div class="mb-3">
+            <label class="form-label" for="birdType">Tipo de ave</label>
+            <select 
+                class="form-select" 
+                id="birdType"
+                name="birdType"
+                required 
+                [(ngModel)]="model.type"
+                #birdType="ngModel" 
+            >
+            <option *ngFor="let type of birdTypes" [value]="type" [selected]="model.type == type">{{type}}</option>
+            </select>
+        </div>
 
-    <div id="birdSexDiv">
-        <label class="form-label" for="birdSex">Sexo</label>
-        <div class="birdSexRadio" (change)="onChangeSex($event)">
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="birdSex" id="birdSexMale">
-                <label class="form-check-label" for="birdSexMale">
-                    <fa-icon [icon]="['fas', 'mars' ]"></fa-icon> Macho
-                </label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="birdSex" id="birdSexFemale">
-                <label class="form-check-label" for="birdSexFemale">
-                    <fa-icon [icon]="['fas', 'venus' ]"></fa-icon> Fêmea
-                </label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="birdSex" id="birdSexUndefined" checked>
-                <label class="form-check-label" for="birdSexUndefined">
-                    <fa-icon [icon]="['fas', 'question' ]"></fa-icon>
-                </label>
+        <div id="birdSexDiv">
+            <label class="form-label" for="birdSex">Sexo</label>
+            <div class="birdSexRadio" (change)="onChangeSex($event)">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="birdSex" id="birdSexMale" [checked]="model.sex != undefined && !isFemale">
+                    <label class="form-check-label" for="birdSexMale">
+                        <fa-icon [icon]="['fas', 'mars' ]"></fa-icon> Macho
+                    </label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="birdSex" id="birdSexFemale" [checked]="isFemale">
+                    <label class="form-check-label" for="birdSexFemale">
+                        <fa-icon [icon]="['fas', 'venus' ]"></fa-icon> Fêmea
+                    </label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="birdSex" id="birdSexUndefined" [checked]="model.sex == undefined">
+                    <label class="form-check-label" for="birdSexUndefined">
+                        <fa-icon [icon]="['fas', 'question' ]"></fa-icon>
+                    </label>
+                </div>
             </div>
         </div>
     </div>
+    <div class="mb-3 alert alert-danger" [hidden]="birdType.untouched || birdType.valid || birdType.pristine">
+        Tipo de ave é obrigatório
     </div>
 
     <div class="mb-3" id="datesDiv">
-        <div class="date-div">
+        <div class="form-group date-div">
             <label class="form-label" for="birthday">
                 <fa-icon [icon]="['fas', 'cake-candles' ]"></fa-icon>
                 Nascimento
             </label>
-            <input class="date-picker" type="date" id="birthday" name="birthday">
+            <input 
+                class="date-picker" 
+                type="date" 
+                id="birthday" 
+                name="birthday"
+                required 
+                [(ngModel)]="model.birthday.toISOString().split('T')[0]"
+                #birthday="ngModel"
+            >
         </div>
         <div class="date-div">
             <label class="form-label" for="aquisition">
                 <fa-icon [icon]="['fas', 'money-check-dollar' ]"></fa-icon>
                 Aquisição
             </label>
-            <input class="date-picker" type="date" id="aquisition" name="aquisition">
+            <input 
+                class="date-picker" 
+                type="date" 
+                id="aquisition" 
+                name="aquisition"
+                required 
+                [(ngModel)]="model.aquisitionDate.toISOString().split('T')[0]"
+                #aquisitionDate="ngModel"
+            >
         </div>
-        <div class="date-div" [hidden]="!isFemale">
+        <div class="date-div" *ngIf="isFemale">
             <label class="form-label" for="first-egg">
                 <fa-icon [icon]="['fas', 'egg' ]"></fa-icon>
                 Primeira postura
             </label>
-            <input class="date-picker" type="date" id="first-egg" name="first-egg">
+            <input 
+                class="date-picker" 
+                type="date" 
+                id="first-egg" 
+                name="first-egg"
+                [(ngModel)]="model.firstEgg"
+                #aquisitionDate="ngModel"
+            >
+        </div>
+    </div>
+    <div class="mb-3">
+        <div class="alert alert-danger" [hidden]="(birthday.untouched || aquisitionDate.untouched) && birthday.valid && birthday.pristine && aquisitionDate.valid && aquisitionDate.pristine">
+            {{ mandatoryFieldText }}
         </div>
     </div>
     
     <div class="mb-3">
         <label for="birdDescription" class="form-label">Descrição</label>
-        <textarea class="form-control" id="birdDescription" aria-describedby="descriptionHelp"></textarea>
+        <textarea 
+            class="form-control" 
+            id="birdDescription" 
+            aria-describedby="descriptionHelp"
+            name="description"
+            [(ngModel)]="model.description"
+            #description="ngModel"
+        ></textarea>
         <div id="descriptionHelp" class="form-text">Temperamento, curiosidades, etc</div>
       </div>
     <div class="modal-footer">
-        <button type="submit" class="btn btn-warning">Salvar</button>
+        <button type="submit" class="btn btn-warning" [disabled]="!birdForm.form.valid">Salvar</button>
     </div>
 </form>

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Bird } from '../classes/Bird';
+import { Bird } from '../models/Bird';
 
 @Component({
   selector: 'birds-list-item',
@@ -10,27 +10,23 @@ export class BirdsListItemComponent {
 
   @Input() itemId: number = -1
   @Input() bird: Bird | undefined
-  @Input() isActive: boolean = false
-  @Output() selectedBirdId = new EventEmitter<number>()
-  classesList: string = "list-group-item list-group-item-action"
+  @Output() onSelectBird = new EventEmitter<number>()
 
   ngOnInit() {
 
   }
 
   onClick(event: Event, itemId: number): void {
-    let element = (event.target as HTMLInputElement)
-    console.log(`Element id=${itemId} was clicked.`)
-    this.isActive = !this.isActive
+    console.log(`Bird id=${itemId} was clicked.`)
 
-    this.selectedBirdId.emit(itemId)
+    this.onSelectBird.emit(itemId)
   }
 
-  ngOnChange() {
+  /*ngOnChange() {
     if(this.isActive) {
       this.classesList = "list-group-item list-group-item-action active"
     } else {
       this.classesList = "list-group-item list-group-item-action"
     }
-  }
+  }*/
 }
