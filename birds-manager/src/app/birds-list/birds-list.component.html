@@ -1,9 +1,9 @@
-<div>
-    <button type="button" class="btn btn-warning" 
-        (click)="openModal(actionType, template)">
-        <span><i class="fa fa-plus"></i></span> Cadastrar ave
-    </button>
-
+<ul class="list-group">
+    <birds-list-item *ngFor="let bird of birdsList; index as i"
+        [itemId]="i" 
+        [bird]="bird"
+        (selectedBirdId)="openUpdateModal($event, template)"
+    >
     <ng-template #template>
         <div class="modal-header">
             <h4 class="modal-title pull-left">{{modalTitle}}</h4>
@@ -13,7 +13,10 @@
         </button>
         </div>
         <div class="modal-body">
-            <bird-form />
+            <bird-form 
+                [bird] = "bird"
+            />
         </div>
     </ng-template>
-</div>
+    </birds-list-item>
+</ul>

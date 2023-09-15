@@ -7,12 +7,16 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
   styleUrls: ['./create-bird.component.css']
 })
 export class CreateBirdComponent {
-  public modalRef: BsModalRef;
-  modalTitle: string;
+  public modalRef: BsModalRef
+  modalTitle: string
+  actionType: string
+  bird: string | null
 
   constructor(private modalService: BsModalService) {
     this.modalRef = new BsModalRef();
     this.modalTitle = ""
+    this.actionType = "create"
+    this.bird = null
   }
 
   public openModal(actionName:string, template: TemplateRef<any>) {

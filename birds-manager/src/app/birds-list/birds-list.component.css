@@ -1,0 +1,7 @@
+.list-group {
+    padding-top: 0.5em;
+    --bs-list-group-active-bg: #bfad6a;
+    --bs-list-group-active-border-color: #bfad6a;
+    --bs-list-group-action-hover-color: var(--bs-emphasis-color);
+    --bs-list-group-action-hover-bg: #fff3ce;
+}

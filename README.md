@@ -22,3 +22,15 @@ Um gerenciador de suas aves de estimação
 - [x] Usar a diretiva ngIf
 - [ ] Formatar a apresentação de dados com Pipes.
 - [ ] Build e deploy da aplicação.
+
+### Running project locally
+1. Change to directory birds-manager
+
+    ```
+    cd birds-manager
+    ```
+
+2. Start project
+    ```
+    npm start
+    ```

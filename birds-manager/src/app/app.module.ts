@@ -9,13 +9,19 @@ import { AppComponent } from './app.component';
 import { CreateBirdComponent } from './create-bird/create-bird.component';
 import { BirdFormComponent } from './bird-form/bird-form.component';
 import { HeaderComponent } from './header/header.component';
+import { BirdsListComponent } from './birds-list/birds-list.component';
+import { BirdsListItemComponent } from './birds-list-item/birds-list-item.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CreateBirdComponent,
     BirdFormComponent,
-    HeaderComponent
+    HeaderComponent,
+    BirdsListComponent,
+    BirdsListItemComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
