@@ -1,0 +1,24 @@
+{
+    "birds": [
+        {
+            "id": 1,
+            "aquisitionDate": "2023-09-15T22:55:04.384Z",
+            "birthday": "2023-09-15T22:55:04.384Z",
+            "description": "Gosta de bicar e destruir.",
+            "firstEgg": "2023-09-27T00:00:00.000Z",
+            "name": "Come-Come",
+            "sex": "Fêmea",
+            "type": "Calopsita"
+        },
+        {
+            "id": 2,
+            "aquisitionDate": "2019-09-02T22:55:04.384Z",
+            "birthday": "2019-01-01T22:55:04.384Z",
+            "description": "Comida favorita: insetos.",
+            "firstEgg": "2019-06-03T00:00:00.000Z",
+            "name": "Cafézinho",
+            "sex": "Fêmea",
+            "type": "Galinha"
+        }
+    ]
+}
