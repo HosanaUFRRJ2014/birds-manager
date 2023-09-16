@@ -1,5 +1,5 @@
 # birds-manager
-Um gerenciador de suas aves de estimação
+Um gerenciador de suas aves de estimação.
 
 
 # Tópicos/Checklist
@@ -23,14 +23,14 @@ Um gerenciador de suas aves de estimação
 - [ ] Formatar a apresentação de dados com Pipes.
 - [ ] Build e deploy da aplicação.
 
-### Running project locally
-1. Change to directory birds-manager
+## Executando o projeto localmente
+1. Vá ao diretório birds-manager
 
     ```
     cd birds-manager
     ```
 
-2. Start project
+2. Inicialize o projeto
     ```
     npm start
     ```

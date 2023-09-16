@@ -1,6 +1,8 @@
-import { Component, Input } from '@angular/core';
-import { Bird } from '../classes/Bird';
-import { BirdType } from '../classes/BirdType';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { Bird } from '../models/Bird';
+import { BirdType } from '../models/BirdType';
+import { BirdSex } from '../models/BirdSex';
 
 @Component({
   selector: 'bird-form',
@@ -10,9 +12,27 @@ import { BirdType } from '../classes/BirdType';
 export class BirdFormComponent {
     isFemale: boolean = false;
     @Input() bird: Bird | undefined
+    model!: Bird
+    mandatoryFieldText: string = "Campo obrigatório"
+    birdTypes: String[] = Object.values(BirdType)
+    defaultSex?: BirdSex | undefined = BirdSex.male
+    selectedSex?: BirdSex | undefined = undefined
+    birdSex = BirdSex
+    @Output() saveBird = new EventEmitter<Bird>()
+    @Output() willClose = new EventEmitter<boolean>()
+
+    constructor(private datePipe: DatePipe) {}
 
     ngOnInit() {
       this.loadBirdData()
+      this.isFemale = this.model.sex == BirdSex.female
+    }
+
+    onSubmit() {
+      console.log("The form was submitted")
+      this.model.sex = this.selectedSex
+      this.saveBird.emit(this.model)
+      this.willClose.emit(true)
     }
 
     onChangeSex(event: Event) {
@@ -20,36 +40,40 @@ export class BirdFormComponent {
       this.isFemale = element.id == "birdSexFemale" && element.checked
     }
 
-    loadBirdData() {
-      if (this.bird != undefined) {
-        (document.getElementById("birdName") as HTMLInputElement).value = this.bird.name;
+    onSelectSex(event: Event) {
+      let element = (event.target as HTMLInputElement)
 
-        if (this.bird.photo) {
-          (document.getElementById("birdPhoto") as HTMLInputElement).value = this.bird.photo;
-        }
-        // TODO: add bird type
-
-        let sexCheckboxes: NodeListOf<HTMLElement> = document.getElementsByName("birdSex")
-        for(let checkBox in sexCheckboxes) {
-         // console.log(`bird Sex checkbox: ${checkBox}`)
-        }
-
-        // TODO: add bird sex
-
-        (document.getElementById("birthday") as HTMLInputElement).value = this.loadFormattedDate(this.bird.birthday);
-        (document.getElementById("aquisition") as HTMLInputElement).value = this.loadFormattedDate(this.bird.aquisitionDate);
-
-        if (this.bird.firstEgg) {
-          (document.getElementById("first-egg") as HTMLInputElement).value = this.loadFormattedDate(this.bird.firstEgg);
-        }
-
-        if (this.bird.description) {
-          (document.getElementById("birdDescription") as HTMLInputElement).value = this.bird.description;
-        }
+      if (element.id == "birdSexFemale") {
+        this.selectedSex = BirdSex.female
+      } else if(element.id == "birdSexMale") {
+        this.selectedSex = BirdSex.male
+      } else {
+        this.selectedSex = undefined
       }
     }
 
-    private loadFormattedDate(date: Date): string {
-      return date.toISOString().split('T')[0]
+    loadBirdData() {
+      const isUpdate = this.bird != undefined 
+      if (isUpdate) {
+        console.log("Loading saved bird data ...", this.bird)
+        this.model = new Bird(
+          this.bird!.name,
+          this.bird!.type,
+          this.bird!.birthday,
+          this.bird!.aquisitionDate,
+          this.bird!.id,
+          this.bird!.photo,
+          this.bird!.sex,
+          this.bird!.firstEgg,
+          this.bird!.description
+        )
+        this.selectedSex = this.bird!.sex
+      } else {
+        this.model = new Bird('', BirdType.cockatiel, new Date(), new Date(), undefined, undefined, this.defaultSex) 
+      }
+    }
+
+    loadFormattedDate(date: Date) {
+      return this.datePipe.transform(date, 'yyyy-MM-dd', 'UTC-3');
     }
 }
