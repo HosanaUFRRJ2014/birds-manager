@@ -46,7 +46,7 @@ export class AppComponent {
       console.log("Retrieving storage of birds")
       let parsedStorage = new Map<number, Bird>(JSON.parse(birdsFromStorage))
       this.birds = parsedStorage
-      console.log("birds: ", typeof this.birds.get(1)?.sex)
+      console.log("birds: ", this.birds)
     }
   }
 }

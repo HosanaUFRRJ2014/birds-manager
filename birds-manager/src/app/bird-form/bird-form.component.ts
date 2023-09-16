@@ -59,12 +59,12 @@ export class BirdFormComponent {
         this.model = new Bird(
           this.bird!.name,
           this.bird!.type,
-          new Date(this.bird!.birthday),
-          new Date(this.bird!.aquisitionDate),
+          this.bird!.birthday,
+          this.bird!.aquisitionDate,
           this.bird!.id,
           this.bird!.photo,
           this.bird!.sex,
-          this.bird!.firstEgg? new Date(this.bird!.firstEgg) : undefined,
+          this.bird!.firstEgg,
           this.bird!.description
         )
         this.selectedSex = this.bird!.sex
@@ -74,6 +74,6 @@ export class BirdFormComponent {
     }
 
     loadFormattedDate(date: Date) {
-      return this.datePipe.transform(date, 'yyyy-MM-dd');
+      return this.datePipe.transform(date, 'yyyy-MM-dd', 'UTC-3');
     }
 }

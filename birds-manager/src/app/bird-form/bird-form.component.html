@@ -17,7 +17,7 @@
         </div>
     </div>
 
-    <div class="input-group mb-3">
+    <!-- <div class="input-group mb-3">
         <label class="input-group-text" for="birdPhoto">
             <fa-icon [icon]="['fas', 'camera']"></fa-icon>
         </label>
@@ -29,7 +29,7 @@
             [(ngModel)]="model.photo"
             #name="ngModel"
         >
-    </div>
+    </div> -->
 
     <div class="input-group">
         <div class="mb-3">
@@ -156,8 +156,13 @@
         </div>
     </div>
     <div class="mb-3">
-        <div class="alert alert-danger" [hidden]="(birthday.untouched || aquisitionDate.untouched) && birthday.valid && birthday.pristine && aquisitionDate.valid && aquisitionDate.pristine">
-            Campos data de nascimento e data de aquisição são obrigatórios
+        <div class="alert alert-danger" [hidden]="birthday.untouched || birthday.valid || birthday.pristine">
+            Campo data de nascimento é obrigatório
+        </div>
+    </div>
+    <div class="mb-3">
+        <div class="alert alert-danger" [hidden]="aquisitionDate.untouched || aquisitionDate.valid || aquisitionDate.pristine">
+            Campos data de aquisição é obrigatório
         </div>
     </div>
     
