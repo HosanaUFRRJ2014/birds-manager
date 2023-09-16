@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { LocalStorageService } from 'angular-web-storage';
 import { Bird } from './models/Bird';
 import { BIRDS_LIST_KEY, CURRENT_BIRD_INDEX_KEY } from './utils/Constants';
+import { BirdSex } from './models/BirdSex';
 
 @Component({
   selector: 'app-root',
@@ -38,17 +39,14 @@ export class AppComponent {
 
   private loadBirdsFromStorage() {
     let birdsFromStorage: string = this.local.get(BIRDS_LIST_KEY)
-
+    this.birds = new Map<number, Bird>()
     if(birdsFromStorage == undefined || birdsFromStorage.length == 0) {
       console.log("Empty storage of birds ... Creating new Map")
-      this.birds = new Map<number, Bird>()
-    
     } else {
       console.log("Retrieving storage of birds")
       let parsedStorage = new Map<number, Bird>(JSON.parse(birdsFromStorage))
       this.birds = parsedStorage
-
-      console.log(parsedStorage)
+      console.log("birds: ", typeof this.birds.get(1)?.sex)
     }
   }
 }

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { DatePipe } from '@angular/common';
 import { Bird } from '../models/Bird';
 import { BirdType } from '../models/BirdType';
 import { BirdSex } from '../models/BirdSex';
@@ -13,9 +14,14 @@ export class BirdFormComponent {
     @Input() bird: Bird | undefined
     model!: Bird
     mandatoryFieldText: string = "Campo obrigatório"
-    birdTypes: BirdType[] = Object.values(BirdType)
+    birdTypes: String[] = Object.values(BirdType)
+    defaultSex?: BirdSex | undefined = BirdSex.male
+    selectedSex?: BirdSex | undefined = undefined
+    birdSex = BirdSex
     @Output() saveBird = new EventEmitter<Bird>()
     @Output() willClose = new EventEmitter<boolean>()
+
+    constructor(private datePipe: DatePipe) {}
 
     ngOnInit() {
       this.loadBirdData()
@@ -24,6 +30,7 @@ export class BirdFormComponent {
 
     onSubmit() {
       console.log("The form was submitted")
+      this.model.sex = this.selectedSex
       this.saveBird.emit(this.model)
       this.willClose.emit(true)
     }
@@ -33,15 +40,40 @@ export class BirdFormComponent {
       this.isFemale = element.id == "birdSexFemale" && element.checked
     }
 
-    loadBirdData() {
-      if (this.bird != undefined) {
-        this.model = this.bird
+    onSelectSex(event: Event) {
+      let element = (event.target as HTMLInputElement)
+
+      if (element.id == "birdSexFemale") {
+        this.selectedSex = BirdSex.female
+      } else if(element.id == "birdSexMale") {
+        this.selectedSex = BirdSex.male
       } else {
-        this.model = new Bird('', BirdType.canary, new Date(), new Date()) 
+        this.selectedSex = undefined
       }
     }
 
-    loadFormattedDate(date: Date): string {
-      return date.toISOString().split('T')[0]
+    loadBirdData() {
+      const isUpdate = this.bird != undefined 
+      if (isUpdate) {
+        console.log("Loading saved bird data ...", this.bird)
+        this.model = new Bird(
+          this.bird!.name,
+          this.bird!.type,
+          new Date(this.bird!.birthday),
+          new Date(this.bird!.aquisitionDate),
+          this.bird!.id,
+          this.bird!.photo,
+          this.bird!.sex,
+          this.bird!.firstEgg? new Date(this.bird!.firstEgg) : undefined,
+          this.bird!.description
+        )
+        this.selectedSex = this.bird!.sex
+      } else {
+        this.model = new Bird('', BirdType.cockatiel, new Date(), new Date(), undefined, undefined, this.defaultSex) 
+      }
+    }
+
+    loadFormattedDate(date: Date) {
+      return this.datePipe.transform(date, 'yyyy-MM-dd');
     }
 }

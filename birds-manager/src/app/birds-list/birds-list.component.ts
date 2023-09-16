@@ -1,10 +1,6 @@
 import { Component, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Bird } from '../models/Bird';
-import { BirdSex } from '../models/BirdSex';
-import { BirdType } from '../models/BirdType';
-import { LocalStorageService } from 'angular-web-storage';
-import { BIRDS_LIST_KEY, CURRENT_BIRD_INDEX_KEY } from '../utils/Constants';
 
 @Component({
   selector: 'birds-list',

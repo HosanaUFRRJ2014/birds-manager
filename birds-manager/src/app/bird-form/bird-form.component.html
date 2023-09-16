@@ -40,29 +40,61 @@
                 name="birdType"
                 required 
                 [(ngModel)]="model.type"
-                #birdType="ngModel" 
+                #type="ngModel" 
             >
-            <option *ngFor="let type of birdTypes" [value]="type" [selected]="model.type == type">{{type}}</option>
+            <option 
+                *ngFor="let type of birdTypes" 
+                [value]="type" 
+                [selected]="model.type && model.type == type"
+            >
+                {{type}}
+            </option>
             </select>
         </div>
 
         <div id="birdSexDiv">
             <label class="form-label" for="birdSex">Sexo</label>
-            <div class="birdSexRadio" (change)="onChangeSex($event)">
+            <div 
+                class="birdSexRadio" 
+                (change)="onChangeSex($event)"
+                [(ngModel)]="model.sex"
+                #sex="ngModel" 
+            >
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="birdSex" id="birdSexMale" [checked]="model.sex != undefined && !isFemale">
+                    <input 
+                        class="form-check-input" 
+                        type="radio" 
+                        name="birdSex" 
+                        id="birdSexMale" 
+                        [checked]="selectedSex == birdSex.male"
+                        (change)="onSelectSex($event)"  
+                    >
                     <label class="form-check-label" for="birdSexMale">
                         <fa-icon [icon]="['fas', 'mars' ]"></fa-icon> Macho
                     </label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="birdSex" id="birdSexFemale" [checked]="isFemale">
+                    <input 
+                        class="form-check-input" 
+                        type="radio" 
+                        name="birdSex" 
+                        id="birdSexFemale" 
+                        [checked]="selectedSex == birdSex.female"
+                        (change)="onSelectSex($event)" 
+                    >
                     <label class="form-check-label" for="birdSexFemale">
                         <fa-icon [icon]="['fas', 'venus' ]"></fa-icon> Fêmea
                     </label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="birdSex" id="birdSexUndefined" [checked]="model.sex == undefined">
+                    <input 
+                        class="form-check-input" 
+                        type="radio" 
+                        name="birdSex" 
+                        id="birdSexUndefined" 
+                        [checked]="selectedSex == undefined"
+                        (change)="onSelectSex($event)" 
+                    >
                     <label class="form-check-label" for="birdSexUndefined">
                         <fa-icon [icon]="['fas', 'question' ]"></fa-icon>
                     </label>
@@ -70,7 +102,7 @@
             </div>
         </div>
     </div>
-    <div class="mb-3 alert alert-danger" [hidden]="birdType.untouched || birdType.valid || birdType.pristine">
+    <div class="mb-3 alert alert-danger" [hidden]="type.untouched || type.valid || type.pristine">
         Tipo de ave é obrigatório
     </div>
 
@@ -86,7 +118,8 @@
                 id="birthday" 
                 name="birthday"
                 required 
-                [(ngModel)]="model.birthday.toISOString().split('T')[0]"
+                [ngModel]="loadFormattedDate(model.birthday)"
+                (ngModelChange)="model.birthday=$event"
                 #birthday="ngModel"
             >
         </div>
@@ -101,7 +134,8 @@
                 id="aquisition" 
                 name="aquisition"
                 required 
-                [(ngModel)]="model.aquisitionDate.toISOString().split('T')[0]"
+                [ngModel]="loadFormattedDate(model.aquisitionDate)"
+                (ngModelChange)="model.aquisitionDate=$event"
                 #aquisitionDate="ngModel"
             >
         </div>
@@ -115,14 +149,15 @@
                 type="date" 
                 id="first-egg" 
                 name="first-egg"
-                [(ngModel)]="model.firstEgg"
+                [ngModel]="model.firstEgg? loadFormattedDate(model.firstEgg) : null"
+                (ngModelChange)="model.firstEgg=$event"
                 #aquisitionDate="ngModel"
             >
         </div>
     </div>
     <div class="mb-3">
         <div class="alert alert-danger" [hidden]="(birthday.untouched || aquisitionDate.untouched) && birthday.valid && birthday.pristine && aquisitionDate.valid && aquisitionDate.pristine">
-            {{ mandatoryFieldText }}
+            Campos data de nascimento e data de aquisição são obrigatórios
         </div>
     </div>
     
