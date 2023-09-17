@@ -11,7 +11,12 @@
                     <div>{{ bird!.birthday | age}}</div>
                 </span>
             </div>
-            
+            <div 
+                class="itemInfoOnTheRightInner"
+                (click)="onDeleteItem($event, itemId)"
+            >
+                <fa-icon [icon]="['fas', 'trash-can' ]"></fa-icon>
+            </div>
         </div>
     </div>
 </button>

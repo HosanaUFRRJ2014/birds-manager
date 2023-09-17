@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Bird } from '../models/Bird';
+import { BirdsService } from '../birds.service';
 
 @Component({
   selector: 'birds-list-item',
@@ -7,14 +8,11 @@ import { Bird } from '../models/Bird';
   styleUrls: ['./birds-list-item.component.css']
 })
 export class BirdsListItemComponent {
-
   @Input() itemId: number = -1
   @Input() bird: Bird | undefined
   @Output() onSelectBird = new EventEmitter<number>()
 
-  ngOnInit() {
-
-  }
+  constructor(private service: BirdsService) {}
 
   onClick(event: Event, itemId: number): void {
     console.log(`Bird id=${itemId} was clicked.`)
@@ -22,11 +20,11 @@ export class BirdsListItemComponent {
     this.onSelectBird.emit(itemId)
   }
 
-  /*ngOnChange() {
-    if(this.isActive) {
-      this.classesList = "list-group-item list-group-item-action active"
-    } else {
-      this.classesList = "list-group-item list-group-item-action"
+  onDeleteItem(_event: MouseEvent, birdId: number) {
+    const confirmedDeletion = window.confirm(`Deseja deletar ${this.bird!.name}?`)
+
+    if(confirmedDeletion) {
+      this.service.delete(birdId)
     }
-  }*/
+  }
 }

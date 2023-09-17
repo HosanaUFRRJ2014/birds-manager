@@ -37,8 +37,13 @@ export class BirdsService {
     }
     this.birds.set(bird.id!, bird)
 
-    // saving in localStorage
-    this.local.set(BIRDS_LIST_KEY, JSON.stringify([...this.birds]))
+    this.saveBirdsInLocalStorage()
+  }
+
+  delete(birdId: number) {
+    this.birds.delete(birdId)
+
+    this.saveBirdsInLocalStorage()
   }
 
   async getRecommendedFoodPortions(birdType: BirdType): Promise<RecommendedFood> {
@@ -80,5 +85,9 @@ export class BirdsService {
     this.local.set(CURRENT_BIRD_INDEX_KEY, nextId);
 
     return nextId;
+  }
+
+  private saveBirdsInLocalStorage(): void {
+    this.local.set(BIRDS_LIST_KEY, JSON.stringify([...this.birds]))
   }
 }
