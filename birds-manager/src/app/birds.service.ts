@@ -49,7 +49,7 @@ export class BirdsService {
       const response = await fetch(url)
       const jsonResponses = await response.json()
       const responseItem = jsonResponses[0]
-            
+
       return await new RecommendedFood(
         responseItem.bird_type,
         responseItem.text,
@@ -61,6 +61,7 @@ export class BirdsService {
       console.error(
         "JSON Server only works on local environment. ",
        "Providing default recommended food instructions",
+        "Are you running 'npm run json:server' ?",
        "Original error: \n",
        error
       )
