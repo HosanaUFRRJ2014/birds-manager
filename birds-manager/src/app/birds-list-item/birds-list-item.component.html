@@ -1,5 +1,17 @@
 <button 
     class="list-group-item list-group-item-action"
     (click)="onClick($event, itemId)">
-    {{ bird!.name | trim | ucwords }}
+    <div class="itemContentDiv">
+        <div>
+            {{ bird!.name | trim | ucwords }}
+        </div>
+        <div class="itemInfoOnTheRight">
+            <div class="itemInfoOnTheRightInner">
+                <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" title="Idade">
+                    <div>{{ bird!.birthday | age}}</div>
+                </span>
+            </div>
+            
+        </div>
+    </div>
 </button>

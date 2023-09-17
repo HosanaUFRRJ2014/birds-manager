@@ -16,6 +16,7 @@ import { AngularWebStorageModule } from 'angular-web-storage';
 import { DatePipe } from '@angular/common';
 import { BirdsService } from './birds.service';
 import { NgPipesModule } from 'ngx-pipes';
+import { AgePipe } from './age.pipe';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { NgPipesModule } from 'ngx-pipes';
     HeaderComponent,
     BirdsListComponent,
     BirdsListItemComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    AgePipe
   ],
   imports: [
     AngularWebStorageModule,
