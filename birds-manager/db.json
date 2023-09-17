@@ -1,0 +1,35 @@
+{
+    "recommended_food_portions": [
+        { 
+            "bird_type": "Canário",
+            "text": "4g a 5g de alimento/dia",
+            "grams": [4, 5]
+        },
+        { 
+            "bird_type": "Calopsita",
+            "text": "10% do peso da ave por dia",
+            "percentages": [10]
+        },
+        { 
+            "bird_type": "Galinha",
+            "text": "100g de alimento/dia",
+            "grams": [100]
+        },
+        { 
+            "bird_type": "Periquito",
+            "text": "12% a 15% do peso da ave por dia",
+            "percentages": [12, 15]
+        },
+        { 
+            "bird_type": "Papagaio",
+            "text": "10% a 15% do peso da ave por dia",
+            "percentages": [10, 15]
+        },
+        { 
+            "bird_type": "Papagaio do Congo",
+            "text": "10% a 15% do peso da ave por dia",
+            "percentages": [10, 15]
+        }
+    ]
+    
+}

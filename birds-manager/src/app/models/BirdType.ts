@@ -3,5 +3,5 @@ export enum BirdType {
     canary = "Canário",
     hen = "Galinha",
     parrot = "Papagaio",
-    pelican = "Pelicano"
+    grayParrot = "Papagaio do Congo"
 }

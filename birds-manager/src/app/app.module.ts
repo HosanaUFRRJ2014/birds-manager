@@ -14,6 +14,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { FormsModule } from '@angular/forms';
 import { AngularWebStorageModule } from 'angular-web-storage';
 import { DatePipe } from '@angular/common';
+import { BirdsService } from './birds.service';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { DatePipe } from '@angular/common';
     FormsModule
   ],
   providers: [
+    BirdsService,
     DatePipe
   ],
   bootstrap: [AppComponent]

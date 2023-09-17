@@ -17,7 +17,7 @@
 }
 
 #birdSexDiv {
-    padding-left: 8%;
+    padding-left: 2%;
 }
 
 .date-div {
@@ -47,4 +47,9 @@
     align-content: space-around;
     justify-content: flex-start;
     align-items: center;
+}
+
+#recommendedFoodPortion {
+    font-weight: 600;
+    color: darkgoldenrod;
 }
