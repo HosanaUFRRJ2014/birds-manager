@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
 import { Bird } from '../models/Bird';
 import { BirdsService } from '../birds.service';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'birds-list-item',
@@ -10,21 +11,18 @@ import { BirdsService } from '../birds.service';
 export class BirdsListItemComponent {
   @Input() itemId: number = -1
   @Input() bird: Bird | undefined
-  @Output() onSelectBird = new EventEmitter<number>()
-
-  constructor(private service: BirdsService) {}
-
-  onClick(event: Event, itemId: number): void {
-    console.log(`Bird id=${itemId} was clicked.`)
-
-    this.onSelectBird.emit(itemId)
+  @Input() onSaveBird: any
+  @Input() modalTitle!: string
+  public modalRef: BsModalRef
+  
+  constructor(private modalService: BsModalService) {
+    this.modalRef = new BsModalRef();
   }
 
-  onDeleteItem(_event: MouseEvent, birdId: number) {
-    const confirmedDeletion = window.confirm(`Deseja deletar ${this.bird!.name}?`)
 
-    if(confirmedDeletion) {
-      this.service.delete(birdId)
-    }
+
+  openUpdateModal(template: TemplateRef<any>) {
+    console.log("Open modal to update bird")
+    this.modalRef = this.modalService.show(template);
   }
 }

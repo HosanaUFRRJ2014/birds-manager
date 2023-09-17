@@ -1,0 +1,21 @@
+<span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" title="Gerenciar peso">
+    <div>
+        <div 
+            (click)="openWeightModal(template03)"
+        >
+            <fa-icon [icon]="['fas',  'scale-balanced' ]"></fa-icon>
+        </div>
+        <ng-template #template03>
+            <div class="modal-header">
+                <h4 class="modal-title pull-left"> Cadastrar peso para {{ bird!.name | trim | ucwords}}</h4>
+                <button type="button" class="close pull-right" 
+                        aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                Em breve
+            </div>
+        </ng-template>
+    </div>
+</span>

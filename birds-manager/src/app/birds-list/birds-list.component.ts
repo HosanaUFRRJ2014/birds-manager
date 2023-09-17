@@ -20,18 +20,8 @@ export class BirdsListComponent {
   }
 
   ngOnInit() {
-    // this.loadBirdsFromStorage()
   }
-  
-  /*ngOnChange() {
-    this.loadBirdsFromStorage()
-  }*/
 
-  openUpdateModal(template: TemplateRef<any>) {
-    console.log("Open modal to update bird")
-    // let selectedBird = this.birds.get(onSelectBird)
-    this.modalRef = this.modalService.show(template);
-  }
 
   public onSaveBird(bird: Bird) {
     this.saveBird.emit(bird)

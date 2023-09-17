@@ -6,6 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class AgePipe implements PipeTransform {
 
   transform(birthdayStr: any): string {
+    // fixme: conta de dias e meses errada
     const currentDate = new Date()
     const [birthYear, birthMonth, birthDay] = birthdayStr.split("-")
     const years = currentDate.getFullYear() - parseInt(birthYear)

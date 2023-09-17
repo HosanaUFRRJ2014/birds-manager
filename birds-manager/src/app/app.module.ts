@@ -17,6 +17,8 @@ import { DatePipe } from '@angular/common';
 import { BirdsService } from './birds.service';
 import { NgPipesModule } from 'ngx-pipes';
 import { AgePipe } from './age.pipe';
+import { DeleteBirdActionComponent } from './delete-bird-action/delete-bird-action.component';
+import { ManageBirdWeightComponent } from './manage-bird-weight/manage-bird-weight.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { AgePipe } from './age.pipe';
     BirdsListComponent,
     BirdsListItemComponent,
     PageNotFoundComponent,
-    AgePipe
+    AgePipe,
+    DeleteBirdActionComponent,
+    ManageBirdWeightComponent
   ],
   imports: [
     AngularWebStorageModule,

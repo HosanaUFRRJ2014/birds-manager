@@ -1,8 +1,7 @@
 .itemContentDiv {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
-    align-content: center;
+    flex-wrap: nowrap;
     justify-content: space-between;
     align-items: center;
 }
@@ -13,9 +12,9 @@
     flex-wrap: nowrap;
     justify-content: space-between;
     align-items: center;
+    padding-right: 0.4em;
 }
 
-.itemInfoOnTheRightInner {
-    padding-left: 0.5em;
-    color: rgb(105, 95, 69);
+.custom-container {
+    width: 12%;
 }

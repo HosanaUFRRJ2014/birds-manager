@@ -1,24 +1,14 @@
-<ul class="list-group" *ngIf="birds && birds.size > 0">
-    <birds-list-item *ngFor="let bird of birds.values()"
-        [itemId]="bird.id!" 
-        [bird]="bird"
-        (onSelectBird)="openUpdateModal(template)"
-    >
-        <ng-template #template>
-            <div class="modal-header">
-                <h4 class="modal-title pull-left">{{modalTitle}}</h4>
-                <button type="button" class="close pull-right" 
-                        aria-label="Close" (click)="modalRef.hide()">
-            <span aria-hidden="true">&times;</span>
-            </button>
-            </div>
-            <div class="modal-body">
-                <bird-form 
-                    [bird] = "bird"
-                    (saveBird)="onSaveBird($event)"
-                    (willClose)="modalRef.hide()"
-                />
-            </div>
-        </ng-template>
-    </birds-list-item>
-</ul>
+<div>
+    <ul class="list-group" *ngIf="birds && birds.size > 0">
+        <birds-list-item *ngFor="let bird of birds.values()"
+            [itemId]="bird.id!" 
+            [bird]="bird"
+            [modalTitle]="modalTitle"
+            [onSaveBird]="onSaveBird"
+        >
+        </birds-list-item>
+    </ul>
+    <div class="text-secondary no-birds" *ngIf="!birds || birds.size == 0">
+        Não há aves cadastradas. Clique no botão '+ Cadastrar Ave' para adicionar uma.
+    </div>
+</div>

@@ -5,3 +5,13 @@
     --bs-list-group-action-hover-color: var(--bs-emphasis-color);
     --bs-list-group-action-hover-bg: #fff3ce;
 }
+
+.no-birds {
+    display: flex;
+    margin-top: 2em;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
