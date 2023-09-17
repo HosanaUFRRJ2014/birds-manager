@@ -41,9 +41,11 @@
                 required 
                 [(ngModel)]="model.type"
                 #type="ngModel" 
+                (change)="onChangeBirdType($event)"
             >
             <option 
-                *ngFor="let type of birdTypes" 
+                *ngFor="let type of birdTypes"
+                (name)="type" 
                 [value]="type" 
                 [selected]="model.type && model.type == type"
             >
@@ -56,9 +58,9 @@
             <label class="form-label" for="birdSex">Sexo</label>
             <div 
                 class="birdSexRadio" 
+                id="birdSex"
+                name="birdSex"
                 (change)="onChangeSex($event)"
-                [(ngModel)]="model.sex"
-                #sex="ngModel" 
             >
                 <div class="form-check form-check-inline">
                     <input 
@@ -177,7 +179,13 @@
             #description="ngModel"
         ></textarea>
         <div id="descriptionHelp" class="form-text">Temperamento, curiosidades, etc</div>
-      </div>
+    </div>
+
+    <div class="mb-3">
+        <label for="birdRecomendedFoodPortion" class="form-label">Quantidade de comida recomendada para {{model.type}}:</label>
+        <div id="recommendedFoodPortion" name="recommendedFoodPortion">{{recommendedFoodPortionText}}</div>
+    </div>
+    
     <div class="modal-footer">
         <button type="submit" class="btn btn-warning" [disabled]="!birdForm.form.valid">Salvar</button>
     </div>
