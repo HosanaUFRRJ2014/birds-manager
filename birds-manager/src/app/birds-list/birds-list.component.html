@@ -4,21 +4,21 @@
         [bird]="bird"
         (onSelectBird)="openUpdateModal(template)"
     >
-    <ng-template #template>
-        <div class="modal-header">
-            <h4 class="modal-title pull-left">{{modalTitle}}</h4>
-            <button type="button" class="close pull-right" 
-                    aria-label="Close" (click)="modalRef.hide()">
-        <span aria-hidden="true">&times;</span>
-        </button>
-        </div>
-        <div class="modal-body">
-            <bird-form 
-                [bird] = "bird"
-                (saveBird)="onSaveBird($event)"
-                (willClose)="modalRef.hide()"
-            />
-        </div>
-    </ng-template>
+        <ng-template #template>
+            <div class="modal-header">
+                <h4 class="modal-title pull-left">{{modalTitle}}</h4>
+                <button type="button" class="close pull-right" 
+                        aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <bird-form 
+                    [bird] = "bird"
+                    (saveBird)="onSaveBird($event)"
+                    (willClose)="modalRef.hide()"
+                />
+            </div>
+        </ng-template>
     </birds-list-item>
 </ul>
