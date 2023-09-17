@@ -15,6 +15,7 @@ import { FormsModule } from '@angular/forms';
 import { AngularWebStorageModule } from 'angular-web-storage';
 import { DatePipe } from '@angular/common';
 import { BirdsService } from './birds.service';
+import { NgPipesModule } from 'ngx-pipes';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { BirdsService } from './birds.service';
     AppRoutingModule,
     BrowserModule,
     FontAwesomeModule,
-    FormsModule
+    FormsModule,
+    NgPipesModule
   ],
   providers: [
     BirdsService,
