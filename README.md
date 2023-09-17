@@ -34,3 +34,7 @@ Um gerenciador de suas aves de estimação.
     ```
     npm start
     ```
+
+#### Créditos
+
+<a href="https://www.flaticon.com/free-icons/bird" title="bird icons">Ícone de pássaro (favicon) criado por Smashicons - Flaticon</a>
