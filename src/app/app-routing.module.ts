@@ -11,10 +11,10 @@ import { BirdsListItemComponent } from './birds-list-item/birds-list-item.compon
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
-  { path: 'bird/:id', component: BirdsListItemComponent },
-  { path: 'bird/', component: CreateBirdComponent },
-  { path: 'birds', component: BirdsListComponent },
-  { path: '', redirectTo: '/birds', pathMatch: 'full' },
+  { path: 'birds-manager/:id', component: BirdsListItemComponent },
+  { path: 'birds-manager/', component: CreateBirdComponent },
+  { path: 'birds-manager', component: BirdsListComponent },
+  { path: '', redirectTo: '/birds-manager', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 
 ];
