@@ -89,6 +89,6 @@ export class BirdFormComponent {
     }
 
     loadFormattedDate(date: Date) {
-      return this.datePipe.transform(date, 'yyyy-MM-dd', 'UTC-3');
+      return this.datePipe.transform(date, 'yyyy-MM-dd');
     }
 }

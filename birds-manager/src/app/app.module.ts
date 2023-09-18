@@ -14,11 +14,17 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { FormsModule } from '@angular/forms';
 import { AngularWebStorageModule } from 'angular-web-storage';
 import { DatePipe } from '@angular/common';
+import { DEFAULT_CURRENCY_CODE, LOCALE_ID } from '@angular/core';
+import ptBr from '@angular/common/locales/pt';
+import { registerLocaleData } from '@angular/common';
 import { BirdsService } from './birds.service';
 import { NgPipesModule } from 'ngx-pipes';
 import { AgePipe } from './age.pipe';
 import { DeleteBirdActionComponent } from './delete-bird-action/delete-bird-action.component';
 import { ManageBirdWeightComponent } from './manage-bird-weight/manage-bird-weight.component';
+import { BirdWeightService } from './bird-weight.service';
+
+registerLocaleData(ptBr);
 
 @NgModule({
   declarations: [
@@ -43,7 +49,16 @@ import { ManageBirdWeightComponent } from './manage-bird-weight/manage-bird-weig
   ],
   providers: [
     BirdsService,
-    DatePipe
+    BirdWeightService,
+    DatePipe,
+    {
+      provide: LOCALE_ID,
+      useValue: 'pt',
+    },
+    {
+      provide: DEFAULT_CURRENCY_CODE,
+      useValue: 'BRL',
+    },
   ],
   bootstrap: [AppComponent]
 })

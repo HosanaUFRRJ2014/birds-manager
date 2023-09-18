@@ -4,6 +4,13 @@
     flex-wrap: nowrap;
     justify-content: space-between;
     align-items: center;
+    padding-right: 0;
+    border-right-style: none;
+}
+
+.itemContentDiv:hover {
+    color: var(--bs-emphasis-color);
+    background-color: #fff3ce;
 }
 
 .itemInfoOnTheRight {
@@ -16,5 +23,20 @@
 }
 
 .custom-container {
-    width: 12%;
+    min-width: 5%;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    border: var(--bs-list-group-border-width) solid var(--bs-list-group-border-color);
+    border-left-style: none;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+    padding-right: 0.3em;
+}
+
+.custom-container:hover {
+    background-color: white;
 }

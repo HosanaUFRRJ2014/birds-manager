@@ -14,7 +14,77 @@
             </button>
             </div>
             <div class="modal-body">
-                Em breve
+                <div class="mb-3 container-md">
+                    <div class="row justify-content-md-center">
+                        <div class="col-2">Peso</div>
+                        <div class="col col-md-auto">Data da Pesagem</div>
+                    </div>
+                    <div class="row justify-content-md-center" *ngFor="let birdweight of birdWeights; index as i">
+                        <div class="col-2">{{birdweight.weight | number }}</div>
+                        <div class="col col-md-auto">{{birdweight.date | date}}</div>
+                        <div class="col col-md-auto link-secondary" (click)="onDeleteWeight(i)">
+                            <fa-icon [icon]="['fas', 'xmark' ]"></fa-icon>
+                        </div>
+                    </div>
+                    <div class="row justify-content-md-center text-secondary p-2" *ngIf="!birdWeights || birdWeights.length == 0">
+                        Não há pesagens cadastradas
+                    </div>
+                </div>
+                
+                <form #birdWeightForm="ngForm" (ngSubmit)="onSubmit()">
+                    <div class="mb-3 newWeightEntry">
+                        <div>
+                            <label for="birdWeight" class="form-label">Peso (g)</label>
+                            <input 
+                                type="number" 
+                                step=".1"
+                                minValue="1"
+                                pattern="^[1-9]+\d*(\.\d{0,3})?$"
+                                class="form-control" 
+                                id="birdWeight" 
+                                name="birdWeight"
+                                required 
+                                [(ngModel)]="model.weight"
+                                #birdWeight="ngModel"
+                                aria-describedby="nameHelp"
+                            >
+                        </div>
+                        <div>
+                            <label class="form-label" for="weightDate">
+                                <fa-icon [icon]="['fas', 'scale-balanced' ]"></fa-icon>
+                                Data da pesagem
+                            </label>
+                            <input 
+                                class="date-picker" 
+                                type="date" 
+                                id="weightDate" 
+                                name="weightDate"
+                                required 
+                                [ngModel]="loadFormattedDate(model.date)"
+                                (ngModelChange)="model.date=$event"
+                                #weightDate="ngModel"
+                            >
+                        </div>
+                    </div>
+                    <div class="mb-3 alert alert-danger" [hidden]="birdWeight.untouched || birdWeight.valid || birdWeight.pristine">
+                        Campo peso obrigatório e precisa ser maior ou igual 1g.
+                    </div>
+                    <div class="mb-3 alert alert-danger" [hidden]="weightDate.untouched || weightDate.valid || weightDate.pristine">
+                        Campo data da pesagem obrigatório.
+                    </div>
+
+                    <div class="mb-3" *ngIf="birdWeights && birdWeights.length > 0">
+                        {{ bird.type }}: {{ recommendedFoodPortionBySpecie.text }}. <br>
+                        Quantidade sugerida para {{bird.name}} (pesagem de {{ birdWeights[birdWeights.length-1].date| date }}): <div class="text-warning fw-bold">{{ individualRecomendations }} </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-warning" [disabled]="!birdWeightForm.form.valid">Adicionar Pesagem</button>
+                        <button type="button" (click)="modalRef.hide()" class="btn btn-warning" [disabled]="!birdWeightForm.form.valid">Fechar</button>
+                    </div>
+                </form>
+
             </div>
         </ng-template>
     </div>

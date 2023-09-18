@@ -19,10 +19,10 @@ export class AgePipe implements PipeTransform {
     let age: string = ""
 
     if(years > 0) {
-      age += `${years} anos e ${monthsStr}`
+      age += `${years} anos`
     } else if(months > 0) {
-      age += `${monthsStr} e ${daysStr}`
-    } else {
+      age += `${monthsStr}`
+    } else if(days > 0) {
       age += daysStr
     }
     console.log("age: ", age)

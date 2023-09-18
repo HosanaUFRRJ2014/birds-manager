@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { LocalStorageService } from 'angular-web-storage';
 import { Bird } from './models/Bird';
-import { BIRDS_LIST_KEY, CURRENT_BIRD_INDEX_KEY } from './utils/Constants';
+import { BIRDS_LIST_KEY, BIRD_INDEX_KEY } from './utils/Constants';
 import { BirdSex } from './models/BirdSex';
 import { BirdsService } from './birds.service';
 

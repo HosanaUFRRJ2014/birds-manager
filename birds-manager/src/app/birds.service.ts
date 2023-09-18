@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Bird } from './models/Bird';
 import { LocalStorageService } from 'angular-web-storage';
-import { BIRDS_LIST_KEY, CURRENT_BIRD_INDEX_KEY } from './utils/Constants';
+import { BIRDS_LIST_KEY, BIRD_INDEX_KEY } from './utils/Constants';
 import { BirdType } from './models/BirdType';
-import { response } from 'express';
 import { RecommendedFood } from './models/RecommendedFood';
+import { BirdWeightService } from './bird-weight.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,10 @@ export class BirdsService {
 
   birds : Map<number, Bird> =  new Map<number, Bird>()
 
-  constructor(private local: LocalStorageService) { }
+  constructor(
+    private local: LocalStorageService,
+    private weightService: BirdWeightService
+  ) { }
 
   list(): Map<number, Bird> {
     let birdsFromStorage: string = this.local.get(BIRDS_LIST_KEY)
@@ -22,8 +25,7 @@ export class BirdsService {
       console.log("Empty storage of birds ... Creating new Map")
     } else {
       console.log("Retrieving storage of birds")
-      let parsedStorage = new Map<number, Bird>(JSON.parse(birdsFromStorage))
-      this.birds = parsedStorage
+      this.birds = new Map<number, Bird>(JSON.parse(birdsFromStorage))
       console.log("birds: ", this.birds)
     }
 
@@ -43,6 +45,7 @@ export class BirdsService {
   delete(birdId: number) {
     this.birds.delete(birdId)
 
+    this.weightService.deleteAllWeightsOfABird(birdId)
     this.saveBirdsInLocalStorage()
   }
 
@@ -80,9 +83,9 @@ export class BirdsService {
   }
 
   private nextBirdId(): number {
-    let currentIndex: number = this.local.get(CURRENT_BIRD_INDEX_KEY)
+    let currentIndex: number = this.local.get(BIRD_INDEX_KEY)
     let nextId = currentIndex == 0? 1 : currentIndex + 1
-    this.local.set(CURRENT_BIRD_INDEX_KEY, nextId);
+    this.local.set(BIRD_INDEX_KEY, nextId);
 
     return nextId;
   }
