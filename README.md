@@ -24,11 +24,6 @@ Um gerenciador de suas aves de estimação.
 - [ ] Build e deploy da aplicação.
 
 ## Executando o projeto localmente
-1. Vá ao diretório birds-manager
-
-    ```
-    cd birds-manager
-    ```
  
 2. Inicialize o json-server
     ```

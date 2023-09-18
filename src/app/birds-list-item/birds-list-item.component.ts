@@ -11,14 +11,17 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 export class BirdsListItemComponent {
   @Input() itemId: number = -1
   @Input() bird: Bird | undefined
-  @Input() onSaveBird: any
+  //@Input() onSaveBird: any
   @Input() modalTitle!: string
   public modalRef: BsModalRef
   
-  constructor(private modalService: BsModalService) {
+  constructor(private modalService: BsModalService, private service: BirdsService) {
     this.modalRef = new BsModalRef();
   }
 
+  onSaveBird(bird: Bird) {
+    this.service.save(bird)
+  }
 
 
   openUpdateModal(template: TemplateRef<any>) {

@@ -22,7 +22,7 @@ export class BirdFormComponent {
     birdSex = BirdSex
     recommendedFoodPortionText: string = "";
 
-    @Output() saveBird = new EventEmitter<Bird>()
+    // @Output() saveBird = new EventEmitter<Bird>()
     @Output() willClose = new EventEmitter<boolean>()
 
     constructor(private datePipe: DatePipe, private service: BirdsService) {}
@@ -36,7 +36,8 @@ export class BirdFormComponent {
     onSubmit() {
       console.log("The form was submitted")
       this.model.sex = this.selectedSex
-      this.saveBird.emit(this.model)
+      //this.saveBird.emit(this.model)
+      this.service.save(this.model)
       this.willClose.emit(true)
     }
 
