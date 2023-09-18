@@ -1,0 +1,13 @@
+.list-group {
+    padding-top: 0.5em;
+}
+
+.no-birds {
+    display: flex;
+    margin-top: 2em;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}

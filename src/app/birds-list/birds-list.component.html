@@ -1,0 +1,13 @@
+<div>
+    <ul class="list-group" *ngIf="birds && birds.size > 0">
+        <birds-list-item *ngFor="let bird of birds.values()"
+            [itemId]="bird.id!" 
+            [bird]="bird"
+            [modalTitle]="modalTitle"
+        >
+        </birds-list-item>
+    </ul>
+    <div class="text-secondary no-birds" *ngIf="!birds || birds.size == 0">
+        Não há aves cadastradas. Clique no botão '+ Cadastrar Ave' para adicionar uma.
+    </div>
+</div>

@@ -1,0 +1,41 @@
+<div class="itemContentDiv">
+    <button 
+        class="list-group-item list-group-item-action itemContentDiv"
+        (click)="openUpdateModal(template01)"
+    >
+        <div class="">
+            {{ bird!.name | trim | ucwords }}
+        </div>
+        <div class="itemInfoOnTheRight">
+            <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" title="Idade">
+                <div>{{ bird!.birthday | age }}</div>
+            </span>
+        </div>
+        <ng-template #template01>
+            <div class="modal-header">
+                <h4 class="modal-title pull-left">{{modalTitle}}</h4>
+                <button type="button" class="close pull-right" 
+                        aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <bird-form 
+                    [bird] = "bird"
+                    (willClose)="modalRef.hide()"
+                />
+            </div>
+        </ng-template>
+    </button>
+
+    <div class="custom-container"> 
+            <manage-bird-weight
+                class="link-warning"
+                [bird]="bird!"
+            />
+            <delete-bird-action
+                class="link-secondary"
+                [bird]="bird!"  
+            />
+    </div>
+</div>
